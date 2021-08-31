@@ -1,0 +1,31 @@
+const { Router } = require('express');
+const { Country, Activity } = require('../db.js');
+const { Op } = require('sequelize');
+
+const router = Router();
+
+router.post('/', (req, res, next) => {
+	let { name, difficult, duration, season, countries } = req.body;
+	return Activity.findOrCreate({
+		where: { name },
+		defaults: {
+			difficult,
+			duration,
+			season,
+		},
+	})
+	.then(async ([activityRes, created]) => {
+		if (countries) {
+			let countriesArr = countries.split(',');
+			for (let id of countriesArr) {
+				let countryRes = await Country.findByPk(id);
+				await activityRes.addCountry(countryRes);
+				await countryRes.addActivity(activityRes);
+			}
+		}
+		return res.json(activityRes);
+	})
+	.catch((err) => next(err));
+});
+
+module.exports = router;

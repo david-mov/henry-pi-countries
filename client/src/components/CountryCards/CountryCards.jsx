@@ -12,12 +12,15 @@ export default function Cards() {
 	if (countries) {
 		return(
 			<div>
-				{countries.map(c => <Card 
-					key={c.id} 
-					flag={c.flag} 		
-					name={c.name} 
-					region={c.region}
-				/>)}
+				{countries?.map(c => 
+					<Card 
+						key={c.id} 
+						id={c.id}
+						flag={c.flag} 		
+						name={c.name} 
+						region={c.region}
+					/>
+				)}
 			</div>
 		)	
 	} else {

@@ -1,11 +1,13 @@
 import { 
 	GET_ALL_COUNTRIES,
-	SEARCH_COUNTRIES
+	SEARCH_COUNTRIES,
+	GET_DETAILS
 } from '../actions/constants';
 
 const initialState = {
 	allCountries: [],
-	countriesLoaded: []
+	countriesLoaded: [],
+	countryDetails: {}
 };
 
 function reducer(state = initialState, action) {
@@ -21,6 +23,11 @@ function reducer(state = initialState, action) {
 				...state,
 				countriesLoaded: action.payload
 			});
+		case GET_DETAILS:
+			return ({
+				...state,
+				countryDetails: action.payload
+			})
 		default:
 			return ({...state});
 	}

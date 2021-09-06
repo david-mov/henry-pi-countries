@@ -15,7 +15,7 @@ export default function Cards() {
 	const countries = useSelector(state => state.countriesLoaded);
 	useEffect(() => {
 		let queryPage = query.get('page');
-		let pageNumber = queryPage && !isNaN(queryPage) ? parseInt(queryPage) : 1;
+		let pageNumber = queryPage && !isNaN(queryPage) && queryPage > 0 ? parseInt(queryPage) : 1;
 		let maxPage = Math.ceil(countries.length / 9);
 		if (pageNumber > maxPage) pageNumber = maxPage;
 		setPage(countries.slice((pageNumber * 9 - 9), (pageNumber * 9)));

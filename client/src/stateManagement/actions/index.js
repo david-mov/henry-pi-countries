@@ -3,8 +3,8 @@ import {
 	GET_ALL_COUNTRIES,
 	SEARCH_COUNTRIES,
 	GET_DETAILS,
-	POST_ACTIVITY
-} from './constants';
+	POST_ACTIVITY,
+} from '../../consts/actions';
 
 export function getAllCountries() {
 	return function(dispatch) {

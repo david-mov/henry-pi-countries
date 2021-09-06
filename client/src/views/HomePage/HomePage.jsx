@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Cards from '../../components/CountryCards/CountryCards';
-import SearchBar from '../../components/SearchBar/SearchBar';
+import Cards from './components/CountryCards/CountryCards';
+import SearchBar from './components/SearchBar/SearchBar';
 
 export default function HomePage() {
 	return (

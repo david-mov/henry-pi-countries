@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import LandingPage from './pages/LandingPage/LandingPage';
-import HomePage from './pages/HomePage/HomePage';
-import DetailsPage from './pages/DetailsPage/DetailsPage';
-import AddPage from './pages/AddPage/AddPage';
-import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import LandingPage from './views/LandingPage/LandingPage';
+import HomePage from './views/HomePage/HomePage';
+import DetailsPage from './views/DetailsPage/DetailsPage';
+import AddPage from './views/AddPage/AddPage';
+import NotFoundPage from './views/NotFoundPage/NotFoundPage';
 
 function App() {
   return (

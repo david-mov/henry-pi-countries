@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
-import { searchCountries } from '../../actions';
+import { searchCountries } from '../../../../stateManagement/actions';
 
 export default function SearchBar() {
 	const dispatch = useDispatch();

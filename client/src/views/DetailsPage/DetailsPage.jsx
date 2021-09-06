@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import DetailsCard from '../../components/DetailsCard/DetailsCard';
-import ActivityCards from '../../components/ActivityCards/ActivityCards';
-import { getDetails } from '../../actions';
+import DetailsCard from './components/DetailsCard/DetailsCard';
+import ActivityCards from './components/ActivityCards/ActivityCards';
+import { getDetails } from '../../stateManagement/actions';
 
 export default function DetailsPage() {
 	const { id } = useParams();

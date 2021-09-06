@@ -2,10 +2,9 @@ import {
 	GET_ALL_COUNTRIES,
 	SEARCH_COUNTRIES,
 	GET_DETAILS
-} from '../actions/constants';
+} from '../../consts/actions';
 
 const initialState = {
-	allCountries: [],
 	countriesLoaded: [],
 	countryDetails: {}
 };
@@ -15,7 +14,6 @@ function reducer(state = initialState, action) {
 		case GET_ALL_COUNTRIES:
 			return ({
 				...state,
-				allCountries: action.payload,
 				countriesLoaded: action.payload
 			});
 		case SEARCH_COUNTRIES:

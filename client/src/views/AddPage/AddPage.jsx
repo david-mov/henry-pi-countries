@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllCountries, postActivity } from '../../actions';
+import { getAllCountries, postActivity } from '../../stateManagement/actions';
 
 export default function AddPage() {
 	const dispatch = useDispatch();
-	const allCountries = useSelector(state => state.allCountries);
+	const allCountries = useSelector(state => state.countriesLoaded);
 	useEffect(() => {
 		dispatch(getAllCountries());
 	}, [dispatch]);

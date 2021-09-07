@@ -18,7 +18,12 @@ export default function Cards() {
 		let pageNumber = queryPage && !isNaN(queryPage) && queryPage > 0 ? parseInt(queryPage) : 1;
 		let maxPage = Math.ceil(countries.length / 9);
 		if (pageNumber > maxPage) pageNumber = maxPage;
-		setPage(countries.slice((pageNumber * 9 - 9), (pageNumber * 9)));
+		if (pageNumber === 1) {
+			setPage(countries.slice(0, 10))
+		} else {
+			setPage(countries.slice((pageNumber * 9 - 9) + 1, (pageNumber * 9) + 1));			
+		}
+
 	}, [query, countries])
 	if (page) {
 		return(
@@ -29,7 +34,7 @@ export default function Cards() {
 						id={c.id}
 						flag={c.flag} 		
 						name={c.name} 
-						region={c.region}
+						region={c.subregion.region.name}
 					/>
 				)}
 			</div>

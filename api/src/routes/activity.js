@@ -28,4 +28,29 @@ router.post('/', (req, res, next) => {
 	.catch((err) => next(err));
 });
 
+router.get('/', (req, res, next) => {
+	let { name } = req.query;
+	if (name) {
+		return Activity.findOne({
+			where: { name },
+			include: {
+				model: Country,
+				through: {
+					attributes: [],
+				},
+			},
+			attributes: []
+		})
+		.then((related) => res.json(related))
+		.catch((err) => next(err))
+	} else {
+		return Activity.findAll()
+		.then((activities) => {
+			return res.json(activities);
+		})
+		.catch((err) => next(err));
+	}
+
+})
+
 module.exports = router;

@@ -20,14 +20,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       defaultValue: 'Unknown',
     },
-    region: {
-      type: DataTypes.STRING,
-      defaultValue: 'Unknown',
-    },
-    subregion: {
-      type: DataTypes.STRING,
-      defaultValue: 'Unknown',
-    },
     area: {
       type: DataTypes.INTEGER,
     },        

@@ -21,7 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 const axios = require('axios');
-const { Country, Activity } = require('./src/db.js');
+const { Country, Activity, Region, Subregion } = require('./src/db.js');
 
 const preloader = async () => {
   try {
@@ -36,12 +36,14 @@ const preloader = async () => {
           name,
           flag,
           capital,
-          region,
-          subregion,
           area,
           population,
         }
       });
+      let [regionRes, rCreated] = await Region.findOrCreate({ where: { name: region } });
+      let [subregionRes, srCreated] = await Subregion.findOrCreate({ where: { name: subregion } });
+      if (srCreated) regionRes.addSubregion(subregionRes);
+      subregionRes.addCountry(countryRes);
     }
   }
   catch (err) {

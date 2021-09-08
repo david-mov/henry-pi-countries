@@ -5,6 +5,13 @@ module.exports = (sequelize) => {
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			set(value) {
+				this.setDataValue('name', value.toLowerCase());
+			},
+			get() {
+				const rawValue = this.getDataValue('name');
+				return rawValue[0].toUpperCase() + rawValue.slice(1);
+			}
 		},
 		difficult: {
 			type: DataTypes.STRING,

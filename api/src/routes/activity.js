@@ -6,6 +6,7 @@ const router = Router();
 
 router.post('/', (req, res, next) => {
 	let { name, difficult, duration, season, countries } = req.body;
+	name = name.toLowerCase();
 	return Activity.findOrCreate({
 		where: { name },
 		defaults: {
@@ -31,6 +32,7 @@ router.post('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
 	let { name } = req.query;
 	if (name) {
+		name = name.toLowerCase();		
 		return Activity.findOne({
 			where: { name },
 			include: {

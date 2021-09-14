@@ -30,7 +30,17 @@ router.post('/', (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-	let { name } = req.query;
+	return Activity.findAll()
+	.then((activities) => {
+		return res.json(activities);
+	})
+	.catch((err) => next(err));
+})
+
+module.exports = router;
+
+/*
+let { name } = req.query;
 	if (name) {
 		name = name.toLowerCase();		
 		return Activity.findOne({
@@ -45,14 +55,5 @@ router.get('/', (req, res, next) => {
 		})
 		.then((related) => res.json(related))
 		.catch((err) => next(err))
-	} else {
-		return Activity.findAll()
-		.then((activities) => {
-			return res.json(activities);
-		})
-		.catch((err) => next(err));
-	}
-
-})
-
-module.exports = router;
+	} else {}
+*/

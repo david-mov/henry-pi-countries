@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
 			},
 			get() {
 				const rawValue = this.getDataValue('name');
-				return rawValue[0].toUpperCase() + rawValue.slice(1);
+				return rawValue ? rawValue[0].toUpperCase() + rawValue.slice(1) : null;
 			}
 		},
 		difficult: {

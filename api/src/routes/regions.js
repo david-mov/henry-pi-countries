@@ -5,6 +5,16 @@ const { Op } = require('sequelize');
 const router = Router();
 
 router.get('/', (req,res,next) => {
+	return Region.findAll({ 
+		attributes: ['name'],
+	})
+	.then((regions) => res.json(regions))
+	.catch((err) => next(err));	
+})
+
+module.exports = router;
+
+/*
 	let { region } = req.query;
 	if (region) {
 		return Region.findAll({
@@ -20,20 +30,5 @@ router.get('/', (req,res,next) => {
 		})
 		.then((region) => res.json(region))
 		.catch((err) => next(err));
-	} else {
-		return Region.findAll({ 
-			include: {
-				model: Subregion,
-				attributes: ['name'],
-				include: {
-					model: Country,
-				}
-			},
-			attributes: ['name']
-		})
-		.then((regions) => res.json(regions))
-		.catch((err) => next(err));		
-	}
-})
-
-module.exports = router;
+	} else {}
+*/

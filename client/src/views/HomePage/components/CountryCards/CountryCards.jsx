@@ -2,7 +2,7 @@ import Card from '../CountryCard/CountryCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getAllCountries } from '../../../../stateManagement/actions';
+import { getAllCountries, applyFilters } from '../../../../stateManagement/actions';
 
 export default function Cards() {
 	const [page, setPage] = useState([]);	
@@ -10,18 +10,31 @@ export default function Cards() {
 	const location = useLocation();
 	const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
 	useEffect(() => {
-		dispatch(getAllCountries());
-	}, [dispatch])	
+		async function fetchCountries() {
+			await dispatch(getAllCountries());
+		}
+		fetchCountries();
+	}, [dispatch]);
+	useEffect(() => {
+		let queryRegion = query.get('region') || '';
+		let queryActivity = query.get('activity') || '';
+		let queryOrder = query.get('order') || '';
+		dispatch(applyFilters({
+			region: queryRegion,
+			activity: queryActivity,
+			order: queryOrder
+		}))
+	}, [dispatch, query]);
 	const countries = useSelector(state => state.countriesLoaded);
 	useEffect(() => {
 		let queryPage = query.get('page');
 		let pageNumber = queryPage && !isNaN(queryPage) && queryPage > 0 ? parseInt(queryPage) : 1;
-		let maxPage = Math.ceil(countries.length / 9);
+		let maxPage = Math.ceil(countries.length / 10);
 		if (pageNumber > maxPage) pageNumber = maxPage;
 		if (pageNumber === 1) {
-			setPage(countries.slice(0, 10))
+			setPage(countries.slice(0, 9))
 		} else {
-			setPage(countries.slice((pageNumber * 9 - 9) + 1, (pageNumber * 9) + 1));			
+			setPage(countries.slice((pageNumber * 10 - 10) - 1, (pageNumber * 10) - 1));			
 		}
 
 	}, [query, countries])

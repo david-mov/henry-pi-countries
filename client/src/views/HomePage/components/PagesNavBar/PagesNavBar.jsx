@@ -7,7 +7,7 @@ export default function PagesNavBar() {
 	const query = new URLSearchParams(location.search);
 	let currPage = parseInt(query.get('page')) || 1;
 	const countries = useSelector(state => state.countriesLoaded);
-	let totalPages = Math.ceil(countries.length / 9);
+	let totalPages = Math.ceil(countries.length / 10);
 	function handlePagination(pageNumber) {
 		query.set('page', pageNumber);
 		history.push({ search: query.toString() })

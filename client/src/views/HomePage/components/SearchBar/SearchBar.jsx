@@ -9,10 +9,14 @@ export default function SearchBar() {
 	const location = useLocation();
 	const history = useHistory();
 	const query = useMemo(() => new URLSearchParams(location.search), [location.search]);
-
+	const [previousQuery, setPreviousQuery] = useState('');
 	useEffect(() => {
-		dispatch(searchCountries(query.get('search') || ''));
-	}, [query, dispatch])
+		let querySearch = query.get('search') || '';
+		if (querySearch !== previousQuery) {
+			dispatch(searchCountries(querySearch));	
+			setPreviousQuery(querySearch);		
+		}
+	}, [dispatch, query, previousQuery])
 
 	function handleChange(e) {
 		setSearch(e.target.value);

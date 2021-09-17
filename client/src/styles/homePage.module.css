@@ -1,0 +1,39 @@
+.container {
+	background-image: url(allPagesBg.jpg);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.navbar {
+	width: 100%;
+	background-color: #CEA461;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height:  80px;
+}
+
+.searchAndAdd {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 550px;
+	margin-right: 20px;
+}
+
+.title {
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	color: white;
+}
+
+.btn {
+	padding: 6px;
+	width: 200px;
+	border: none;
+	border-radius: 10px;
+	font-size: 16px;
+}

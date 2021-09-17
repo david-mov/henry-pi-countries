@@ -1,0 +1,34 @@
+.container {
+	background-color: white;
+	margin-bottom: 25px;
+	display: flex;
+	flex-direction: row;
+	width: 800px;
+	font-family: 'calibri';
+	font-size: 20px;
+}
+
+.data {
+	background-color: #FEF5E7;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.image {
+	width: 300px;
+}
+
+.title {
+	font-weight: bold;
+}
+
+.btn {
+	width: 118px;
+	padding: 6px;	
+	border: none;
+	border-radius: 10px;
+	font-size: 15px;
+}

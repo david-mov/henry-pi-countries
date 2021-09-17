@@ -1,0 +1,18 @@
+.container {
+	background-color: #FEF5E7;
+	margin: 10px;	
+	padding: 25px;
+	border-radius: 20px;	
+	font-family: 'calibri';
+}
+
+.title {
+	font-size: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.data {
+	font-size: 20px;
+	margin-top: 10px;
+}

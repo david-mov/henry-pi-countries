@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllCountries, postActivity, getAllActivities } from '../../stateManagement/actions';
+import {useHistory} from 'react-router-dom';
+import s from './AddPage.module.css';
 
 export default function AddPage() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const allCountries = useSelector(state => state.allCountries);
 	const allActivities = useSelector(state => state.allActivities);
 	useEffect(() => {
@@ -15,22 +18,44 @@ export default function AddPage() {
 		name: '',
 		difficult: '',
 		duration: '',
-		season: '',
+		season: 'All',
 		countries: ''
 	});
+	const [error, setError] = useState('Fill in the fields');
+
 	function handleChangeNew(ev) {
 		setActivity({
 			...activity,
 			[ev.target.name]: ev.target.value
 		})
+		setError(validation({
+			...activity,
+			[ev.target.name]: ev.target.value
+		}));
 	}
 
 	function handleChange(ev) {
-		let found = allActivities.find((el) => el.id.toString() === ev.target.value);
-		setActivity({
-			...activity,
-			...found
-		});
+		if (ev.target.value !== "") {
+			let found = allActivities.find((el) => el.id.toString() === ev.target.value);
+			setActivity({
+				...activity,
+				...found
+			});
+			setError(validation({
+				...activity,
+				...found
+			}))
+		} else {
+			setActivity({
+				...activity,
+				name: '',
+				difficult: '',
+				duration: '',
+				season: 'All'
+				})
+			setError('Fill in the fields')
+		}
+		
 	}
 
 	function handleSelect(ev) {
@@ -46,14 +71,31 @@ export default function AddPage() {
 			dispatch(postActivity(activity));
 		}
 	}
+
+	function validation(input) {
+		if (!input.name) return 'Name is required.';
+		if (!input.difficult) return 'Difficult is required.';
+		if (isNaN(input.difficult)) return 'Difficult must be a number.'
+		if (input.difficult < 0 || input.difficult > 10) return 'Difficult range is from 0 to 10.'
+		if (!input.duration) return 'Duration is required.'
+		if (isNaN(input.duration)) return 'Duration must be a number.'
+		if (input.duration < 0) return 'Duration must be greater than 0.'
+		return '';
+	}
+
 	return (
-		<div>
-			<h1>Addition Page</h1>
-			<form onSubmit={(ev) => handleSubmit(ev)}>
+		<div className={s.container}>
+			<form className={s.activityForm} onSubmit={(ev) => handleSubmit(ev)}>
+				<h2 className={s.addMargin}>Activity Form</h2>
 				{
 					!createNew && <div>
-						<label>Choose an activity: </label>
-						<select onChange={(ev) => handleChange(ev)}>
+					<div className={s.addMargin}>
+						<label> Create new activity: </label>
+						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Create</button>
+					</div>
+					<div className={s.addMargin}>
+						<label>Use already created activity: </label>
+						<select className={s.selectcss} onChange={(ev) => handleChange(ev)}>
 							<option value=""></option>
 							{
 								allActivities?.map((el) => 
@@ -64,34 +106,45 @@ export default function AddPage() {
 								)
 							}
 						</select>
-					<br />
-					<label> Create new activity: </label>
-					<button onClick={() => setCreateNew(!createNew)}>Create new</button>	
+					</div>
+					</div>
+				}
+				{
+					createNew && <div className={s.addMargin}>
+						<label>Use already created activity: </label>
+						<button className={s.btn} onClick={() => setCreateNew(!createNew)}>Do it</button>
 					</div>
 				}
 				{
 					createNew && <div>
-						<label>Use already created activity: </label>
-						<button onClick={() => setCreateNew(!createNew)}>Do it</button>
-					</div>
-				}
-				{
-					createNew && ['name','difficult','duration','season'].map((el) => 
-						<div key={el}>
-							<label>{el[0].toUpperCase() + el.slice(1)}: </label>
-							<input 
-								type='text' 
-								autoComplete='off' 
-								name={el} 
-								value={activity[el]} 
-								onChange={(ev) => handleChangeNew(ev)}
-							/>
+						{['name','difficult','duration'].map((el) => 
+							<div className={s.addMargin} key={el}>
+								<input 
+									className={s.input}
+									type='text' 
+									autoComplete='off' 
+									placeholder={el[0].toUpperCase() + el.slice(1)}
+									name={el} 
+									value={activity[el]} 
+									onChange={(ev) => handleChangeNew(ev)}
+								/>
+								{el === 'difficult' && <label> 0-10</label>}
+								{el === 'duration' && <label> in minutes</label>}
+							</div>
+						)}
+						<div className={s.addMargin}>
+							<label>Season: </label>
+							<select className={s.selectcss} name='season' onChange={(ev) => handleChangeNew(ev)}>
+								{['All','Summer','Winter','Spring','Autnum'].map((el) =>
+									<option key={el} value={el}>{el}</option>
+								)}
+							</select>
 						</div>
-					)
+					</div>
 				} 
-				<div>
+				<div className={s.addMargin}>
 					<label>Countries related to this activity:</label> <br />
-					<select onChange={(ev) => handleSelect(ev)} multiple>
+					<select className={s.selectcss} onChange={(ev) => handleSelect(ev)} multiple>
 						<option value=""></option>
 						{
 							allCountries?.map((el) => 
@@ -102,10 +155,15 @@ export default function AddPage() {
 							)
 						}
 					</select> <br />
-					<label>Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</label>
+					<label className={s.smallLetter}>Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</label>
 				</div>
-				<button type='submit'>Add</button>
+				<br/>
+				{ 
+					error ? <p className={s.errMsg}>{error}</p> : <button className={s.btn} type='submit'>Add</button>
+				}
 			</form>
+			<br />
+			<button className={s.btn} onClick={() => history.goBack()}>Go Back</button>
 		</div>
 	)
 }

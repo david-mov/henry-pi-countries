@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAllActivities, getAllRegions } from '../../../../stateManagement/actions';
 import { useLocation, useHistory } from 'react-router-dom';
+import s from './FilterBar.module.css';
 
 export default function FilterBar() {
 	const dispatch = useDispatch();
@@ -35,10 +36,10 @@ export default function FilterBar() {
 	}
 
 	return (
-		<form onSubmit={(ev) => handleSubmit(ev)}>
+		<form onSubmit={(ev) => handleSubmit(ev)} className={s.container}>
 			<div>
 				<label>Filter by region: </label>
-				<select name='region' onChange={(ev) => handleChange(ev)}>
+				<select className={s.selectcss} name='region' onChange={(ev) => handleChange(ev)}>
 					<option value=''>All</option>
 					{
 						regions?.map((r) => 
@@ -49,7 +50,7 @@ export default function FilterBar() {
 			</div>
 			<div>
 				<label>Filter by activity: </label>
-				<select name='activity' onChange={(ev) => handleChange(ev)}>
+				<select className={s.selectcss} name='activity' onChange={(ev) => handleChange(ev)}>
 					<option value=''>All</option>
 					{
 						activities?.map((a) =>
@@ -60,7 +61,7 @@ export default function FilterBar() {
 			</div>
 			<div>
 				<label>Order: </label>
-				<select name='order' onChange={(ev) => handleChange(ev)}>
+				<select className={s.selectcss} name='order' onChange={(ev) => handleChange(ev)}>
 					<option value=''>Default</option>
 					<option value='alp_asc'>Alphabetical Asc</option>
 					<option value='alp_desc'>Alphabetical Desc</option>
@@ -68,7 +69,7 @@ export default function FilterBar() {
 					<option value='pop_desc'>Population Desc.</option>
 				</select>
 			</div>
-			<button type='submit'>Filter</button>
+			<button className={s.btn} type='submit'>Filter</button>
 		</form>
 	)
 }

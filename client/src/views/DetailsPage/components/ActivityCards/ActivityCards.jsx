@@ -1,9 +1,9 @@
 import ActivityCard from '../ActivityCard/ActivityCard';
+import s from './ActivityCards.module.css';
 
 export default function ActivityCards({activities}) {
 	return (
-		<div>
-			<h2>Activities</h2>
+		<div className={s.container}>
 			{
 				activities?.map((a) => 
 					<ActivityCard 

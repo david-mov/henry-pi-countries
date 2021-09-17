@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
+import s from './PagesNavBar.module.css'
 
 export default function PagesNavBar() {	
 	const history = useHistory();
@@ -13,18 +14,22 @@ export default function PagesNavBar() {
 		history.push({ search: query.toString() })
 	}
 	return (
-		<div>	
-			<button onClick={() => handlePagination(1)}>First</button>
+		<div className={s.container}>	
+			<button className={s.btn} onClick={() => handlePagination(1)}>First</button>
+			{currPage - 3 > 0 && 
+				<button className={s.btn} onClick={() => handlePagination(currPage - 3)}>{currPage - 3}</button> }
 			{currPage - 2 > 0 && 
-				<button onClick={() => handlePagination(currPage - 2)}>{currPage - 2}</button> }
+				<button className={s.btn} onClick={() => handlePagination(currPage - 2)}>{currPage - 2}</button> }
 			{currPage - 1 > 0 && 
-				<button onClick={() => handlePagination(currPage - 1)}>{currPage - 1}</button> }
-			<label> {currPage} </label>
+				<button className={s.btn} onClick={() => handlePagination(currPage - 1)}>{currPage - 1}</button> }
+			<label className={s.pageNumber}> {currPage} </label>
 			{currPage + 1 <= totalPages && 
-				<button onClick={() => handlePagination(currPage + 1)}>{currPage + 1}</button> }
-			{currPage + 2 <= totalPages &&
-				<button onClick={() => handlePagination(currPage + 2)}>{currPage + 2}</button> }	
-			<button onClick={() => handlePagination(totalPages)}>Last</button>
+				<button className={s.btn} onClick={() => handlePagination(currPage + 1)}>{currPage + 1}</button> }
+			{currPage + 2 <= totalPages && 
+				<button className={s.btn} onClick={() => handlePagination(currPage + 2)}>{currPage + 2}</button> }
+			{currPage + 3 <= totalPages &&
+				<button className={s.btn} onClick={() => handlePagination(currPage + 3)}>{currPage + 3}</button> }	
+			<button className={s.btn} onClick={() => handlePagination(totalPages)}>Last</button>
 		</div>
 	)
 }

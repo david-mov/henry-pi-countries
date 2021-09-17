@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { searchCountries } from '../../../../stateManagement/actions';
+import s from './SearchBar.module.css'
 
 export default function SearchBar() {
 	const dispatch = useDispatch();
@@ -28,16 +29,15 @@ export default function SearchBar() {
 		setSearch('');
 	}
 	return (
-		<div>
-			<form onSubmit={(e) => handleSubmit(e)}>
-				<input 
-					type='text' 
-					autoComplete='off' 
-					value={search} 
-					onChange={(e) => handleChange(e)}
-				/>
-				<button type='submit'>Search</button>
-			</form>
-		</div>
+		<form className={s.container} onSubmit={(e) => handleSubmit(e)}>
+			<input 
+				className={s.searchInput}
+				type='text' 
+				autoComplete='off' 
+				value={search} 
+				onChange={(e) => handleChange(e)}
+			/>
+			<button className={s.btn} type='submit'>Search</button>
+		</form>
 	)
 }

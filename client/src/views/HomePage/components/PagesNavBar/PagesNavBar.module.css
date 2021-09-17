@@ -1,0 +1,29 @@
+.container {
+	background-color: #FCF3CF;
+	width: 700px;
+	display: flex;
+	justify-content: center;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	align-items: center;
+	padding: 10px;
+	border-radius: 30px;
+}
+
+.btn {
+	width: 40px;	
+	margin-left: 15px;
+	margin-right: 15px;
+	padding: 6px;	
+	border: none;
+	border-radius: 10px;
+	font-size: 15px;
+	font-family: 'calibri';
+}
+
+.pageNumber {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 18px;
+	font-family: 'calibri';
+}

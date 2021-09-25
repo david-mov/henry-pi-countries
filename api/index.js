@@ -25,23 +25,22 @@ const { Country, Activity, Region, Subregion } = require('./src/db.js');
 
 const preloader = async () => {
   try {
-    const countries = await axios.get('https://restcountries.eu/rest/v2/all');
+    const countries = await axios.get('https://restcountries.com/v3/all');
     for (let country of countries.data) {
-      let { alpha3Code, name, flag, capital, region, subregion, area, population } = country;
+      let { cca3, name, flags, capital, region, subregion, area } = country;
       let [countryRes, created] = await Country.findOrCreate({
         where: {
-          id: alpha3Code,
+          id: cca3,
         },
         defaults: {
-          name,
-          flag,
-          capital,
+          name: name.official,
+          flag: flags ? flags[0] : null,
+          capital: capital ? capital[0] : null,
           area,
-          population,
         }
       });
-      let [regionRes, rCreated] = await Region.findOrCreate({ where: { name: region } });
-      let [subregionRes, srCreated] = await Subregion.findOrCreate({ where: { name: subregion } });
+      let [regionRes, rCreated] = await Region.findOrCreate({ where: { name: region || 'Unknown' } });
+      let [subregionRes, srCreated] = await Subregion.findOrCreate({ where: { name: subregion || 'Unknown' } });
       if (srCreated) regionRes.addSubregion(subregionRes);
       subregionRes.addCountry(countryRes);
     }

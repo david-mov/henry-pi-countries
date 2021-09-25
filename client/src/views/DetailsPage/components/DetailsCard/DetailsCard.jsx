@@ -1,6 +1,6 @@
 import s from './DetailsCard.module.css';
 
-export default function DetailsCard({id, name, flag, capital, region, subregion, area, population}) {
+export default function DetailsCard({id, name, flag, capital, region, subregion, area}) {
 	return (
 		<div className={s.container}>
 			<img src={flag} alt={name} width="300" height="200" />
@@ -10,7 +10,6 @@ export default function DetailsCard({id, name, flag, capital, region, subregion,
 			<p className={s.data}>Region: {region}</p>
 			<p className={s.data}>Subregion: {subregion}</p>
 			<p className={s.data}>Area: {area} km²</p>
-			<p className={s.data}>Population: {population}</p>
 		</div>
 	)
 }

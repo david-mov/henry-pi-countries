@@ -27,7 +27,6 @@ export default function DetailsPage() {
 				region={c?.subregion?.region?.name} 
 				subregion={c?.subregion?.name} 
 				area={c.area} 
-				population={c.population} 
 			/>
 			<h1 className={s.title}>Related Activities</h1>
 			<ActivityCards activities={c.activities}/>

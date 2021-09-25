@@ -67,11 +67,11 @@ function reducer(state = initialState, action) {
 			else if (f.order === 'alp_desc') {
 				matches.sort((a,b) => b.name.localeCompare(a.name));
 			} 
-			else if (f.order === 'pop_asc') {
-				matches.sort((a,b) => a.population - b.population);
+			else if (f.order === 'area_asc') {
+				matches.sort((a,b) => a.area - b.area);
 			} 
-			else if (f.order === 'pop_desc') {
-				matches.sort((a,b) => b.population - a.population);
+			else if (f.order === 'area_desc') {
+				matches.sort((a,b) => b.area - a.area);
 			}
 			// console.log(matches);
 			return ({

@@ -48,7 +48,7 @@ export default function Cards() {
 						flag={c.flag} 		
 						name={c.name} 
 						region={c.subregion.region.name}
-						population={c.population}
+						area={c.area}
 					/>
 				)}
 			</div>

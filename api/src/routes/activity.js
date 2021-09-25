@@ -38,22 +38,3 @@ router.get('/', (req, res, next) => {
 })
 
 module.exports = router;
-
-/*
-let { name } = req.query;
-	if (name) {
-		name = name.toLowerCase();		
-		return Activity.findOne({
-			where: { name },
-			include: {
-				model: Country,
-				through: {
-					attributes: [],
-				},
-			},
-			attributes: []
-		})
-		.then((related) => res.json(related))
-		.catch((err) => next(err))
-	} else {}
-*/

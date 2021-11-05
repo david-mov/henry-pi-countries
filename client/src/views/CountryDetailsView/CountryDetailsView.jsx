@@ -7,7 +7,7 @@ import { getDetails } from '../../stateManagement/actions';
 import s from './DetailsPage.module.css';
 import b from '../../components/layouts/goBack.module.css';
 
-export default function DetailsPage() {
+export default function CountryDetailsView() {
 	const history = useHistory();
 	const { id } = useParams();
 	const dispatch = useDispatch();

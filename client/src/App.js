@@ -1,20 +1,20 @@
-import './App.css';
+ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import LandingPage from './views/LandingPage/LandingPage';
-import HomePage from './views/HomePage/HomePage';
-import DetailsPage from './views/DetailsPage/DetailsPage';
-import AddPage from './views/AddPage/AddPage';
-import NotFoundPage from './views/NotFoundPage/NotFoundPage';
+import LandingView from './views/LandingView/LandingView';
+import HomeView from './views/HomeView/HomeView';
+import CountryDetailsView from './views/CountryDetailsView/CountryDetailsView';
+import AddActivityView from './views/AddActivityView/AddActivityView';
+import NotFoundView from './views/NotFoundView/NotFoundView';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={LandingPage}/>
-        <Route path='/home' component={HomePage}/>
-        <Route path='/details/:id' component={DetailsPage}/>
-        <Route path='/add' component={AddPage}/>
-        <Route path='*' component={NotFoundPage}/>      
+        <Route exact path='/' component={LandingView}/>
+        <Route path='/home' component={HomeView}/>
+        <Route path='/details/:id' component={CountryDetailsView}/>
+        <Route path='/add' component={AddActivityView}/>
+        <Route path='*' component={NotFoundView}/>      
       </Switch>
     </Router>
   );

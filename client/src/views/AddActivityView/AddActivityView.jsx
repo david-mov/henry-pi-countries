@@ -4,7 +4,7 @@ import { getAllCountries, postActivity, getAllActivities } from '../../stateMana
 import {useHistory} from 'react-router-dom';
 import s from './AddPage.module.css';
 
-export default function AddPage() {
+export default function AddActivityView() {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const allCountries = useSelector(state => state.allCountries);

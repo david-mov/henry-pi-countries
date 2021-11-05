@@ -5,7 +5,7 @@ import PagesNavBar from './components/PagesNavBar/PagesNavBar'
 import FilterBar from './components/FilterBar/FilterBar';
 import s from '../../styles/homePage.module.css';
 
-export default function HomePage() {
+export default function HomeView() {
 	return (
 		<div className={s.container}>
 			<div className={s.navbar}>

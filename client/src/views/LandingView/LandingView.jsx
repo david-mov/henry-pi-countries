@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import s from '../../styles/landingPage.module.css';
 
-export default function LandingPage() {
+export default function LandingView() {
 	return (
 		<div className={s.container}>
 			<h1 className={s.title}>Welcome!</h1>

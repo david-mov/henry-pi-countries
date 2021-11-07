@@ -3,7 +3,7 @@ import Cards from './components/CountryCards/CountryCards';
 import SearchBar from './components/SearchBar/SearchBar';
 import PagesNavBar from './components/PagesNavBar/PagesNavBar'
 import FilterBar from './components/FilterBar/FilterBar';
-import s from '../../styles/homePage.module.css';
+import s from './homePage.module.css';
 
 export default function HomeView() {
 	return (

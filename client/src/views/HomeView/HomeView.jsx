@@ -9,9 +9,11 @@ export default function HomeView() {
 	return (
 		<div className={s.container}>
 			<div className={s.navbar}>
-				<div className={s.title}>
-					<h1>Countries App</h1>					
-				</div>
+				<Link to='/home' style={{ textDecoration: 'none' }}>
+					<div className={s.title}>
+						<h1>Countries App</h1>
+					</div>
+				</Link>
 				<div className={s.searchAndAdd}>
 					<SearchBar />
 					<Link to='/add'>

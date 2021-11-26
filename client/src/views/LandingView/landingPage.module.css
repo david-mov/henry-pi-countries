@@ -16,12 +16,17 @@
 	font-size: 18px;
 	box-shadow: 2px 4px 10px #3b3a30;
 	margin-bottom: 60%;
+	background-color: #F2F3F4;
+}
+
+.btn:hover {
+	background-color: #E5E7E9;
 }
 
 .title {
 	margin-bottom: 30px;	
 	font-size: 50px;
 	font-family: fantasy;
-	color: #f2f3f4;
+	color: #F2F3F4;
 	text-shadow: 10px 10px 10px #3b3a30;
 }

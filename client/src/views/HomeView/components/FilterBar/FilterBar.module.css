@@ -30,5 +30,10 @@
 	border: none;
 	border-radius: 8px;
 	font-size: 16px;
+	background-color: #F2F3F4;
+}
+
+.btn:hover {
+	background-color: #E5E7E9;
 }
 

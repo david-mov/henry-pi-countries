@@ -6,4 +6,9 @@
 	font-size: 16px;
 	font-family: 'calibri';
 	margin: 10px;
+	background-color: #F2F3F4;
+}
+
+.goBack:hover {
+	background-color: #E5E7E9;
 }

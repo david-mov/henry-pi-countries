@@ -17,7 +17,6 @@ export default function CountryDetailsView() {
 	let c = useSelector(state => state.countryDetails);
 	return (
 		<div className={s.container}>
-			<button className={b.goBack} onClick={() => history.goBack()}>Go Back</button>		
 			<h1 className={s.title}>Country Details</h1>
 			<DetailsCard 
 				id={c.id} 

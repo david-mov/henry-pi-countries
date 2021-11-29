@@ -67,7 +67,7 @@ export default function AddActivityView() {
 
 	function handleSubmit(ev) {
 		ev.preventDefault();
-		if (activity.name !== "" && activity.countries !== "") {
+		if (activity.name !== "") {
 			dispatch(postActivity(activity));
 		}
 	}

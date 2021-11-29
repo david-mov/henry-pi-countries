@@ -25,6 +25,9 @@ export default function SearchBar() {
 	function handleSubmit(e) {
 		e.preventDefault();
 		query.set('search', search);
+		query.set('region', '');
+		query.set('activity', '');
+		query.set('order', '');
 		history.push({ search: query.toString() });
 		setSearch('');
 	}

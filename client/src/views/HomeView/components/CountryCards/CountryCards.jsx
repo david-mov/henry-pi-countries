@@ -19,11 +19,14 @@ export default function Cards() {
 		let queryRegion = query.get('region') || '';
 		let queryActivity = query.get('activity') || '';
 		let queryOrder = query.get('order') || '';
-		dispatch(applyFilters({
+		let querySearch = query.get('search');
+		if (!querySearch) {
+			dispatch(applyFilters({
 			region: queryRegion,
 			activity: queryActivity,
-			order: queryOrder
+			order: queryOrder,
 		}))
+		}
 	}, [dispatch, query]);
 	const countries = useSelector(state => state.countriesLoaded);
 	useEffect(() => {
@@ -55,7 +58,7 @@ export default function Cards() {
 		)	
 	} else {
 		return(
-			<div>Countries not found!</div>
+			<h2>Countries not found!</h2>
 		)
 	}
 }

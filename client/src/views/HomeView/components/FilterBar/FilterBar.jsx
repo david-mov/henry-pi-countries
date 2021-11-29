@@ -32,6 +32,7 @@ export default function FilterBar() {
 		query.set('region', filters.region);
 		query.set('activity', filters.activity);
 		query.set('order', filters.order);
+		query.set('search', '');
 		history.push({ search: query.toString() });
 	}
 

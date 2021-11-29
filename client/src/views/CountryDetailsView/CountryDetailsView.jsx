@@ -27,7 +27,7 @@ export default function CountryDetailsView() {
 				subregion={c?.subregion?.name} 
 				area={c.area} 
 			/>
-			<h1 className={s.title}>{c.activities.length === 0 ? "No related activities" : "Related activities"}</h1>
+			<h1 className={s.title}>{c?.activities?.length === 0 ? "No related activities" : "Related activities"}</h1>
 			<ActivityCards activities={c.activities}/>
 			<button className={b.goBack} onClick={() => history.goBack()}>Go Back</button>				
 		</div>

@@ -1,5 +1,5 @@
 .container {
-	background-image: url(landingPageBg.jpg);
+	background-image: url('../../assets/landingPageBg.jpg');
 	display: flex;
 	flex-direction: column;
 	height: 100%;

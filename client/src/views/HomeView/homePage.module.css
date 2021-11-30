@@ -1,5 +1,5 @@
 .container {
-	background-image: url(allPagesBg.jpg);
+	background-image: url('../../assets/allPagesBg.jpg');
 	display: flex;
 	flex-direction: column;
 	align-items: center;

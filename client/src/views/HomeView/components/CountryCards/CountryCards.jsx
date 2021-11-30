@@ -41,10 +41,10 @@ export default function Cards() {
 		}
 
 	}, [query, countries])
-	if (page) {
 		return(
-			<div>
-				{page?.map(c => 
+		<div>
+			{ page?.length === 0 && <h2>Countries not found!</h2> }
+			{ page?.map(c => 
 					<Card 
 						key={c.id} 
 						id={c.id}
@@ -52,13 +52,10 @@ export default function Cards() {
 						name={c.name} 
 						region={c.subregion.region.name}
 						area={c.area}
-					/>
-				)}
-			</div>
+				/>
+			)}
+		</div>
 		)	
-	} else {
-		return(
-			<h2>Countries not found!</h2>
-		)
-	}
+
+			
 }

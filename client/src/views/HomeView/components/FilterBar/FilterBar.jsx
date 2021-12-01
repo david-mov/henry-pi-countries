@@ -33,6 +33,7 @@ export default function FilterBar() {
 		query.set('activity', filters.activity);
 		query.set('order', filters.order);
 		query.set('search', '');
+		query.set('page', 1)
 		history.push({ search: query.toString() });
 	}
 

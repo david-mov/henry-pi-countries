@@ -28,6 +28,7 @@ export default function SearchBar() {
 		query.set('region', '');
 		query.set('activity', '');
 		query.set('order', '');
+		query.set('page', 1)
 		history.push({ search: query.toString() });
 		setSearch('');
 	}

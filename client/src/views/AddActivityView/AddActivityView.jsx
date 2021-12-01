@@ -67,9 +67,7 @@ export default function AddActivityView() {
 
 	function handleSubmit(ev) {
 		ev.preventDefault();
-		if (activity.name !== "") {
-			dispatch(postActivity(activity));
-		}
+		dispatch(postActivity(activity));
 	}
 
 	function validation(input) {

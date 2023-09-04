@@ -1,12 +1,10 @@
-const server = require('./src/app.js');
-const { conn } = require('./src/db.js');
-
 const axios = require('axios');
-const { Country, Activity, Region, Subregion } = require('./src/db.js');
+const { Country, Region, Subregion } = require('./db.js');
 
 const preloader = async () => {
   try {
     const countries = await axios.get('https://restcountries.com/v3/all');
+
     for (let country of countries.data) {
       let { cca3, name, flags, capital, region, subregion, area } = country;
       let [countryRes, created] = await Country.findOrCreate({
@@ -25,17 +23,12 @@ const preloader = async () => {
       if (srCreated) regionRes.addSubregion(subregionRes);
       subregionRes.addCountry(countryRes);
     }
+
+    console.log('Preloading successfully completed')
   }
-  catch (err) {
-    console.error(err);
+  catch (error) {
+    console.error({message: 'An error occurred', error})
   }  
 }
 
-// Syncing all the models at once.
-conn.sync({ force: true })
-.then(() => {
-  preloader();
-  server.listen(3001, () => {
-    console.log('%s listening at 3001'); // eslint-disable-line no-console
-  });
-});
+preloader()
